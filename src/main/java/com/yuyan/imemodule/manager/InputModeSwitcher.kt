@@ -274,6 +274,8 @@ object InputModeSwitcher {
             CustomConstant.SCHEMA_ZH_T9, CustomConstant.SCHEMA_ZH_STROKE, CustomConstant.SCHEMA_ZH_DOUBLE_LX17 -> KeyEvent.META_CAPS_LOCK_ON
             else -> MASK_CASE_LOWER
         }
+        KeyboardLoaderUtil.instance.clearKeyboardMap()
+        KeyboardManager.instance.clearKeyboard()
         KeyboardManager.instance.switchKeyboard()
     }
 
@@ -284,6 +286,8 @@ object InputModeSwitcher {
         saveInputMode(MODE_SKB_GERMAN_LOWER)
         mToggleStates.modifiers = MASK_CASE_LOWER
         Kernel.setCharCase(MASK_CASE_LOWER)
+        KeyboardLoaderUtil.instance.clearKeyboardMap()
+        KeyboardManager.instance.clearKeyboard()
         KeyboardManager.instance.switchKeyboard()
     }
 
