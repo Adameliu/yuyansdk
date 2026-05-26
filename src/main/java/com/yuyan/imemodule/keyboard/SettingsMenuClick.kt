@@ -68,7 +68,13 @@ fun onSettingsMenuClick(inputView: InputView, skbMenuMode: SkbMenuMode) {
         SkbMenuMode.LockGerman -> {
             val keyboardLockGerman = AppPrefs.getInstance().keyboardSetting.keyboardLockGerman.getValue()
             AppPrefs.getInstance().keyboardSetting.keyboardLockGerman.setValue(!keyboardLockGerman)
-            InputModeSwitcher.switchToGerman()
+            if (!keyboardLockGerman) {
+                // 开启德语
+                InputModeSwitcher.switchToGerman()
+            } else {
+                // 关闭德语，回到中文
+                InputModeSwitcher.switchModeForUserKey(InputModeSwitcher.USER_KEYCODE_RETURN)
+            }
         }
         SkbMenuMode.SymbolShow -> {
             val keyboardSymbol = ThemeManager.prefs.keyboardSymbol.getValue()

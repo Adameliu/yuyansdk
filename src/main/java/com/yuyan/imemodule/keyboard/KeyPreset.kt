@@ -40,6 +40,10 @@ object KeyPreset {
         InputModeSwitcher.USER_KEYCODE_SYMBOL to arrayOf("符号"),
         InputModeSwitcher.USER_KEYCODE_NUMBER to arrayOf("123"),
         InputModeSwitcher.USER_KEYCODE_EMOJI to arrayOf("表情"),
+        InputModeSwitcher.USER_KEYCODE_AE to arrayOf("Ä", "ä"),
+        InputModeSwitcher.USER_KEYCODE_OE to arrayOf("Ö", "ö"),
+        InputModeSwitcher.USER_KEYCODE_UE to arrayOf("Ü", "ü"),
+        InputModeSwitcher.USER_KEYCODE_ESZETT to arrayOf("ẞ", "ß"),
     )
 
     val qwertyKeyNumberPreset: Map<Int, Array<String>> = hashMapOf(
@@ -78,6 +82,10 @@ object KeyPreset {
         InputModeSwitcher.USER_KEYCODE_SYMBOL to arrayOf("符号"),
         InputModeSwitcher.USER_KEYCODE_NUMBER to arrayOf("123"),
         InputModeSwitcher.USER_KEYCODE_EMOJI to arrayOf("表情"),
+        InputModeSwitcher.USER_KEYCODE_AE to arrayOf("Ä", "ä"),
+        InputModeSwitcher.USER_KEYCODE_OE to arrayOf("Ö", "ö"),
+        InputModeSwitcher.USER_KEYCODE_UE to arrayOf("Ü", "ü"),
+        InputModeSwitcher.USER_KEYCODE_ESZETT to arrayOf("ẞ", "ß"),
     )
 
     val qwertyPYKeyPreset: Map<Int, Array<String>> = hashMapOf(
@@ -116,6 +124,10 @@ object KeyPreset {
         InputModeSwitcher.USER_KEYCODE_SYMBOL to arrayOf("符号"),
         InputModeSwitcher.USER_KEYCODE_NUMBER to arrayOf("123"),
         InputModeSwitcher.USER_KEYCODE_EMOJI to arrayOf("表情"),
+        InputModeSwitcher.USER_KEYCODE_AE to arrayOf("Ä", "ä"),
+        InputModeSwitcher.USER_KEYCODE_OE to arrayOf("Ö", "ö"),
+        InputModeSwitcher.USER_KEYCODE_UE to arrayOf("Ü", "ü"),
+        InputModeSwitcher.USER_KEYCODE_ESZETT to arrayOf("ẞ", "ß"),
     )
 
     val qwertyPYKeyNumberPreset: Map<Int, Array<String>> = hashMapOf(
@@ -154,6 +166,10 @@ object KeyPreset {
         InputModeSwitcher.USER_KEYCODE_SYMBOL to arrayOf("符号"),
         InputModeSwitcher.USER_KEYCODE_NUMBER to arrayOf("123"),
         InputModeSwitcher.USER_KEYCODE_EMOJI to arrayOf("表情"),
+        InputModeSwitcher.USER_KEYCODE_AE to arrayOf("Ä", "ä"),
+        InputModeSwitcher.USER_KEYCODE_OE to arrayOf("Ö", "ö"),
+        InputModeSwitcher.USER_KEYCODE_UE to arrayOf("Ü", "ü"),
+        InputModeSwitcher.USER_KEYCODE_ESZETT to arrayOf("ẞ", "ß"),
     )
 
     val lx17PYKeyPreset: Map<Int, Array<String>> = hashMapOf(

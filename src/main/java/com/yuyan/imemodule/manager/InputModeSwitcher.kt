@@ -261,7 +261,11 @@ object InputModeSwitcher {
     fun switchModeForUserKey(userKey: Int) {
         var newInputMode = MODE_UNSET
         if (USER_KEYCODE_LANG == userKey) {
-            newInputMode = if (isChinese) MODE_SKB_ENGLISH_LOWER else getInstance().internal.inputMethodPinyinMode.getValue()
+            newInputMode = when {
+                isChinese -> MODE_SKB_ENGLISH_LOWER
+                isEnglish -> MODE_SKB_GERMAN_LOWER
+                else -> getInstance().internal.inputMethodPinyinMode.getValue()  // 德语→中文
+            }
         } else if (USER_KEYCODE_NUMBER == userKey) {
             newInputMode = MASK_SKB_LAYOUT_NUMBER
         } else if (USER_KEYCODE_TEXTEDIT == userKey) {
