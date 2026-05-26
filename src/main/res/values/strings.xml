@@ -50,6 +50,8 @@
     <string name="setting_ime_keyboard_height_sure">确认</string>
     <!--手写模式-->
     <string name="keyboard_menu_lock_english">锁定英语键盘(下次弹出保持英语模式)</string>
+    <string name="keyboard_menu_lock_german">锁定德语键盘(下次弹出保持德语模式)</string>
+    <string name="keyboard_name_german">德语键盘</string>
     <string name="input_methods">输入法</string>
     <string name="advanced">高级</string>
     <string name="button_vibration_amplitude">触感强度</string>

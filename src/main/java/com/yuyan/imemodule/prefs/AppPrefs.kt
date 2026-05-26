@@ -163,6 +163,9 @@ class AppPrefs(private val sharedPreferences: SharedPreferences) {
         // 锁定英语键盘:锁定后，切换到英语键盘，下次弹出键盘使用英语模式
         val keyboardLockEnglish = switch(R.string.keyboard_menu_lock_english, "keyboard_menu_lock_english_enable", false)
 
+        // 锁定德语键盘:锁定后，切换到德语键盘，下次弹出键盘使用德语模式
+        val keyboardLockGerman = switch(R.string.keyboard_menu_lock_german, "keyboard_menu_lock_german_enable", false)
+
         val oneHandedModSwitch = switch(R.string.keyboard_one_handed_mod, "keyboard_one_handed_mod_enable", false)
 
         val oneHandedMod = list(

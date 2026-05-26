@@ -139,4 +139,23 @@ object KeyboardData {
             arrayOf(KeyEvent.KEYCODE_DPAD_DOWN, InputModeSwitcher.USER_KEYCODE_PASTE),
             arrayOf(InputModeSwitcher.USER_KEYCODE_MOVE_START, InputModeSwitcher.USER_KEYCODE_MOVE_END, KeyEvent.KEYCODE_DEL)),
     )
+
+    // 德语 QWERTZ 布局，ä/ö/ü/ß 独立显示
+    // 第一行: Q W E R T Z U I O P
+    // 第二行: A S D F G H J K L Ä Ö
+    // 第三行: Y X C V B N M Ü ß DEL
+    val layoutQwertyDe: Map<SkbStyleMode, ArrayList<Array<Int>>> = linkedMapOf(
+        SkbStyleMode.Google to arrayListOf(
+            arrayOf(45, 51, 33, 46, 48, 54, 49, 37, 43, 44),
+            arrayOf(29, 47, 32, 34, 35, 36, 38, 39, 40, InputModeSwitcher.USER_KEYCODE_AE, InputModeSwitcher.USER_KEYCODE_OE),
+            arrayOf(53, 52, 31, 50, 30, 42, 41, InputModeSwitcher.USER_KEYCODE_UE, InputModeSwitcher.USER_KEYCODE_ESZETT, KeyEvent.KEYCODE_DEL)),
+        SkbStyleMode.Samsung to arrayListOf(
+            arrayOf(45, 51, 33, 46, 48, 54, 49, 37, 43, 44),
+            arrayOf(29, 47, 32, 34, 35, 36, 38, 39, 40, InputModeSwitcher.USER_KEYCODE_AE, InputModeSwitcher.USER_KEYCODE_OE),
+            arrayOf(53, 52, 31, 50, 30, 42, 41, InputModeSwitcher.USER_KEYCODE_UE, InputModeSwitcher.USER_KEYCODE_ESZETT, KeyEvent.KEYCODE_DEL)),
+        SkbStyleMode.Yuyan to arrayListOf(
+            arrayOf(45, 51, 33, 46, 48, 54, 49, 37, 43, 44),
+            arrayOf(29, 47, 32, 34, 35, 36, 38, 39, 40, InputModeSwitcher.USER_KEYCODE_AE, InputModeSwitcher.USER_KEYCODE_OE),
+            arrayOf(53, 52, 31, 50, 30, 42, 41, InputModeSwitcher.USER_KEYCODE_UE, InputModeSwitcher.USER_KEYCODE_ESZETT, KeyEvent.KEYCODE_DEL)),
+    )
 }

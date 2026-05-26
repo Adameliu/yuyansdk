@@ -346,6 +346,7 @@ class InputView(context: Context, private val service: ImeService) : LifecycleRe
         val englishCellDisable = InputModeSwitcher.isEnglish && !appPrefs.input.abcSearchEnglishCell.getValue()
         return when {
             englishCellDisable -> processEnglishKey(event)
+            InputModeSwitcher.isGerman -> processGermanKey(event)
             InputModeSwitcher.isEnglish || InputModeSwitcher.isChinese -> processInput(event)
             else -> processEnglishKey(event)
         }
@@ -361,6 +362,43 @@ class InputView(context: Context, private val service: ImeService) : LifecycleRe
             keyCode == KeyEvent.KEYCODE_DEL -> {
                 service.getTextBeforeCursor(1).takeIf { it.isNotEmpty() }?.let { textBeforeCursors.push(it) }
                 sendKeyEvent(keyCode)
+            }
+            keyCode in (KeyEvent.KEYCODE_A..KeyEvent.KEYCODE_Z) -> {
+                textBeforeCursors.clear()
+                commitText(label)
+            }
+            keyCode != 0 -> sendKeyEvent(keyCode)
+            label.isNotEmpty() -> if (SymbolPreset.containsKey(label)) commitPairSymbol(label) else commitText(label)
+            else -> result = false
+        }
+        return result
+    }
+
+    private fun processGermanKey(event: KeyEvent): Boolean {
+        val keyCode = event.keyCode
+        val keyChar = event.unicodeChar
+        val label = keyChar.toChar().toString()
+        var result = true
+        when {
+            keyCode == KeyEvent.KEYCODE_DEL -> {
+                service.getTextBeforeCursor(1).takeIf { it.isNotEmpty() }?.let { textBeforeCursors.push(it) }
+                sendKeyEvent(keyCode)
+            }
+            keyCode == InputModeSwitcher.USER_KEYCODE_AE -> {
+                textBeforeCursors.clear()
+                commitText(if (InputModeSwitcher.isLower) "ä" else "Ä")
+            }
+            keyCode == InputModeSwitcher.USER_KEYCODE_OE -> {
+                textBeforeCursors.clear()
+                commitText(if (InputModeSwitcher.isLower) "ö" else "Ö")
+            }
+            keyCode == InputModeSwitcher.USER_KEYCODE_UE -> {
+                textBeforeCursors.clear()
+                commitText(if (InputModeSwitcher.isLower) "ü" else "Ü")
+            }
+            keyCode == InputModeSwitcher.USER_KEYCODE_ESZETT -> {
+                textBeforeCursors.clear()
+                commitText(if (InputModeSwitcher.isLower) "ß" else "ẞ")
             }
             keyCode in (KeyEvent.KEYCODE_A..KeyEvent.KEYCODE_Z) -> {
                 textBeforeCursors.clear()

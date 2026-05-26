@@ -1,0 +1,44 @@
+__build_info:
+  rime_version: 1.11.2
+  timestamps:
+    easy_de.schema: 0
+engine:
+  filters:
+    - uniquifier
+  processors:
+    - ascii_composer
+    - key_binder
+    - speller
+    - recognizer
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - matcher
+    - ascii_segmentor
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - table_translator
+    - punct_translator
+    - echo_translator
+punctuator:
+  symbols:
+    "/": ["@", "＃", "＊", "＋", "……", "〜", "（", "）", "、", "/"]
+schema:
+  description: |
+    德语输入
+  name: "德语输入"
+  schema_id: easy_de
+speller:
+  alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBAäöüßÄÖÜ
+  delimiter: " '"
+translator:
+  always_show_comments: true
+  comment_format:
+    - "xform/ //"
+  dictionary: easy_de
+  preedit_format:
+    - "xform/ //"
+  spelling_hints: 100

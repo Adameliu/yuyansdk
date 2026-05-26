@@ -83,6 +83,14 @@ object InputModeSwitcher {
     const val USER_KEYCODE_MOVE_START = -23
     const val USER_KEYCODE_MOVE_END = -24
 
+    /**
+     * User defined key code for German special characters
+     */
+    const val USER_KEYCODE_AE = -30        // ä
+    const val USER_KEYCODE_OE = -31        // ö
+    const val USER_KEYCODE_UE = -32        // ü
+    const val USER_KEYCODE_ESZETT = -33    // ß
+
 
     /**
      * Bits used to indicate soft keyboard layout. If none bit is set, the
@@ -157,6 +165,12 @@ object InputModeSwitcher {
     private const val MASK_LANGUAGE_EN = 0x0020
 
     /**
+     * Used to indicate the current language. An input mode should be anded with
+     * [.MASK_LANGUAGE] to get this information. 指明德语语言。
+     */
+    private const val MASK_LANGUAGE_DE = 0x0030
+
+    /**
      * 指明软键盘状态为低（小写）。
      */
     private const val MASK_CASE_LOWER = 0x0000
@@ -175,6 +189,11 @@ object InputModeSwitcher {
      * Mode for inputing English lower characters with soft keyboard. 标准软键盘、英文、小写模式
      */
     private const val MODE_SKB_ENGLISH_LOWER = MASK_SKB_LAYOUT_QWERTY_ABC or MASK_LANGUAGE_EN
+
+    /**
+     * Mode for inputing German lower characters with soft keyboard. 标准软键盘、德语、小写模式
+     */
+    private const val MODE_SKB_GERMAN_LOWER = MASK_SKB_LAYOUT_QWERTY_ABC or MASK_LANGUAGE_DE
 
     /**
      * Unset mode. 未设置输入法模式。
@@ -259,6 +278,16 @@ object InputModeSwitcher {
     }
 
     /**
+     * 切换到德语模式
+     */
+    fun switchToGerman() {
+        saveInputMode(MODE_SKB_GERMAN_LOWER)
+        mToggleStates.modifiers = MASK_CASE_LOWER
+        Kernel.setCharCase(MASK_CASE_LOWER)
+        KeyboardManager.instance.switchKeyboard()
+    }
+
+    /**
      * 通过应用内设置，切换输入法模式。
      */
     fun switchModeForSetting(value: Pair<Int, String>) {
@@ -327,6 +356,11 @@ object InputModeSwitcher {
          * 是否是软件盘英语模式
          */
         get() = mInputMode and MASK_LANGUAGE == MASK_LANGUAGE_EN
+    val isGerman: Boolean
+        /**
+         * 是否是软件盘德语模式
+         */
+        get() = mInputMode and MASK_LANGUAGE == MASK_LANGUAGE_DE
     val isLower: Boolean
         get() = mToggleStates.modifiers == MASK_CASE_LOWER
 
@@ -337,10 +371,12 @@ object InputModeSwitcher {
         mInputMode = newInputMode // 设置新的输入法模式为当前的输入法模式
         if (isEnglish) {
             Kernel.initImeSchema(CustomConstant.SCHEMA_EN)
+        } else if (isGerman) {
+            Kernel.initImeSchema(CustomConstant.SCHEMA_DE)
         } else {
             Kernel.initImeSchema(getInstance().internal.pinyinModeRime.getValue())
         }
-        if (isChinese || isEnglish) {
+        if (isChinese || isEnglish || isGerman) {
             mRecentLauageInputMode = mInputMode
             getInstance().internal.inputDefaultMode.setValue(mInputMode)
         }

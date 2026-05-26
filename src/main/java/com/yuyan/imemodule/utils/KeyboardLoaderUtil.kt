@@ -146,9 +146,13 @@ class KeyboardLoaderUtil private constructor() {
                 keyBeans = lastRows(skbValue)
                 rows.add(keyBeans)
             }
-            InputModeSwitcher.MASK_SKB_LAYOUT_QWERTY_ABC -> {// 4000 英文全键
+            InputModeSwitcher.MASK_SKB_LAYOUT_QWERTY_ABC -> {// 4000 英文/德文全键
                 var keyBeans: MutableList<SoftKey> = LinkedList()
-                val keys = KeyboardData.layoutQwertyEn[skbStyleMode]!!
+                val keys = if (InputModeSwitcher.isGerman) {
+                    KeyboardData.layoutQwertyDe[skbStyleMode]!!
+                } else {
+                    KeyboardData.layoutQwertyEn[skbStyleMode]!!
+                }
                 var qwertyKeys = createQwertyKeys(keys[0])
                 keyBeans.addAll(qwertyKeys)
                 rows.add(keyBeans)
